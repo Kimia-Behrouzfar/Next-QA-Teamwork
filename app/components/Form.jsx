@@ -1,10 +1,22 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Box, TextField, Button } from '@mui/material'
-import PostQuestion from '../actions/questionAction'
+import {
+    Box,
+    TextField,
+    Button,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    Typography,
+} from '@mui/material'
 
 export default function Form() {
+    const [open, setOpen] = useState(false)
+    const [show, setShow] = useState(false)
+
+
     const helperTexts = {
         title: {
             required: "Title is required",
@@ -30,16 +42,34 @@ export default function Form() {
     } = useForm()
 
     const onSubmit = async (data) => {
+        setOpen(true)
+
+    }
+
+
+    const handleConfirm = async () => {
         try {
-            const result = await PostQuestion(data)
-            console.log("Saved:", result)
             reset()
-            alert("Question saved successfully!")
+            // alert("Question saved successfully!")
+            setShow(true)
+            setTimeout(() => {
+                setShow(false)
+            }, 5000)
+
         } catch (err) {
             console.error(err)
             alert("Failed to save question")
+        } finally {
+            setOpen(false)
         }
     }
+
+
+
+    const handleCancel = () => {
+        setOpen(false)
+    }
+
 
     return (
         <Box
@@ -48,12 +78,14 @@ export default function Form() {
             sx={{
                 width: '70%',
                 mx: 'auto',
-                mt: 8,
+                mt: 6,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 3,
             }}
         >
+            <Typography variant="h4" textAlign='center' pb='5px'>Ask your question</Typography>
+            {/* Title Input */}
             <TextField
                 label="Title"
                 variant="outlined"
@@ -69,7 +101,7 @@ export default function Form() {
                     minLength: 5,
                     maxLength: 50,
                     pattern: {
-                        value: /^[A-Za-z0-9\s]+$/,
+                        value: /^[\u0600-\u06FFa-zA-Z0-9\s.,!?'"()-]+$/,
                         message: 'Title contains invalid characters',
                     },
                 })}
@@ -81,6 +113,7 @@ export default function Form() {
                 }}
             />
 
+            {/* Description Input */}
             <TextField
                 label="Description"
                 variant="outlined"
@@ -110,6 +143,7 @@ export default function Form() {
                 }}
             />
 
+            {/* Submit Button */}
             <Button
                 type="submit"
                 variant="contained"
@@ -125,6 +159,62 @@ export default function Form() {
             >
                 Submit
             </Button>
+
+
+            {/* Confirmation Modal */}
+            <Dialog open={open} onClose={handleCancel} PaperProps={{
+                sx: {
+                    width: '400px',
+                    maxWidth: '90vw',
+                    height: '150px',
+                    borderRadius: '10px',
+                    p: 2,
+                },
+            }}>
+                <DialogTitle>Are you sure?</DialogTitle>
+                <DialogActions sx={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    gap: 2
+                }}>
+                    <Button onClick={handleCancel} color="error">
+                        Cancle
+                    </Button>
+                    <Button onClick={handleConfirm} color="primary" variant="contained">
+                        Yes
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+
+
+
+            {show && (
+                <Box
+                    sx={{
+                        width: 170,
+                        height: 70,
+                        textAlign: 'center',
+                        bgcolor: '#4caf50',
+                        color: 'white',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        position: 'fixed',
+                        left: '10px',
+                        bottom: '10px',
+                        fontSize: '14px',
+                        borderRadius: 2,
+                        zIndex: 9999,
+                        cursor: 'pointer'
+                    }}
+                    onClick={() => setShow(false)}
+                >
+                    Question saved successfully!
+                </Box>
+            )}
+
+
         </Box>
     )
 }
