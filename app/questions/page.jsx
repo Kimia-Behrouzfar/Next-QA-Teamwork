@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import QuestionCard from "./QuestionCard";
-import Search from "@/components/Search";
-import Filter from "@/components/Filter";
+import QuestionCard from "/components/QuestionCard";
+import Search from "/components/Search";
+import Filter from "/components/Filter";
 
 export default function QuestionsPage() {
   const [questions, setQuestions] = useState([]);
