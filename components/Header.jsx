@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
@@ -9,13 +8,12 @@ import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import Image from "next/image";
 import Link from "next/link";
-import { DarkModeBtn } from "./DarkMode";
+import DarkMode from "./DarkMode";  // Changed import
 
 const drawerWidth = 240;
 const navItems = [
@@ -48,7 +46,7 @@ function Header(props) {
             </ListItemButton>
           </ListItem>
         ))}
-        <DarkModeBtn text />
+        <DarkMode text />  {/* Changed from DarkModeBtn */}
       </List>
     </Box>
   );
@@ -77,7 +75,7 @@ function Header(props) {
             ))}
           </Box>
           <Box sx={{ flexGrow: "1", textAlign: "right", display: { xs: "none", sm: "block" } }}>
-            <DarkModeBtn />
+            <DarkMode />  {/* Changed from DarkModeBtn */}
           </Box>
         </Toolbar>
       </AppBar>
@@ -101,7 +99,5 @@ function Header(props) {
     </Box>
   );
 }
-
-
 
 export default Header;
