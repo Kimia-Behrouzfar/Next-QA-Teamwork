@@ -2,7 +2,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { IconButton, ListItem } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "@/redux/themeSlice";
+import { toggleTheme } from "@/redux/reducers/themeSlice";
 
 export const DarkModeBtn = ({ text }) => {
   const dispatch = useDispatch();
@@ -19,11 +19,13 @@ export const DarkModeBtn = ({ text }) => {
         </ListItem>
       ) : (
         <IconButton onClick={() => dispatch(toggleTheme())}>
-          {darkMode ? <LightModeIcon fontSize="large" /> : <DarkModeIcon fontSize="large" />}
+          {darkMode ? (
+            <LightModeIcon fontSize="large" />
+          ) : (
+            <DarkModeIcon fontSize="large" />
+          )}
         </IconButton>
       )}
     </>
   );
-
-
 };
