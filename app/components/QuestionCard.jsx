@@ -1,13 +1,18 @@
 'use client'
+import { useRouter } from 'next/navigation';
+
 
 export default function QuestionCard({ question, onDelete }) {
+  const router = useRouter();
+
+
   const handleDelete = async () => {
     await fetch(`/api/questions/${question._id}`, { method: 'DELETE' })
     onDelete(question._id)
   }
 
   const handleClick = () => {
-    router.push(`/questions/edit/${question._id}`);
+    router.push(`/questions/${question._id}/answer`);
   }
 
   return (

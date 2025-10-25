@@ -1,40 +1,51 @@
 import clientPromise from "@/app/DataBase/mongodb";
 import { ObjectId } from "mongodb";
 
-
 export async function GET(req, { params }) {
-    const client = await clientPromise;
-    const db = client.db();
+    try {
+        const client = await clientPromise;
+        const db = client.db();
 
-    const question = await db
-        .collection("questions")
-        .findOne({ _id: new ObjectId(params.id) });
+        // همه جواب‌های مربوط به این سوال
+        const answers = await db
+            .collection("answers")
+            .find({ questionId: new ObjectId(params.id) })
+            .sort({ createdAt: 1 }) // مرتب‌سازی از قدیم به جدید
+            .toArray();
 
-    if (!question) {
-        return Response.json({ error: "Question not found" }, { status: 404 });
+        // تبدیل ObjectId ها به string
+        const formattedAnswers = answers.map(a => ({
+            ...a,
+            _id: a._id.toString(),
+            questionId: a.questionId.toString(),
+        }));
+
+        return Response.json(formattedAnswers);
+    } catch (err) {
+        console.error(err);
+        return Response.json({ error: "Failed to fetch answers" }, { status: 500 });
     }
-
-    return Response.json(question);
 }
 
+export async function POST(req, { params }) {
+    try {
+        const client = await clientPromise;
+        const db = client.db();
 
+        const { body, author } = await req.json();
 
+        const newAnswer = {
+            questionId: new ObjectId(params.id),
+            body,
+            author: author || "anonymous",
+            createdAt: new Date(),
+        };
 
-export async function PUT(req, { params }) {
-    const client = await clientPromise;
-    const db = client.db();
-    const data = await req.json();
+        const result = await db.collection("answers").insertOne(newAnswer);
 
-    await db.collection("questions").updateOne(
-        { _id: new ObjectId(params.id) },
-        {
-            $set: {
-                title: data.title,
-                description: data.description,
-                updatedAt: new Date(),
-            },
-        }
-    );
-
-    return Response.json({ success: true });
+        return Response.json({ success: true, id: result.insertedId.toString() });
+    } catch (err) {
+        console.error(err);
+        return Response.json({ error: "Failed to submit answer" }, { status: 500 });
+    }
 }
