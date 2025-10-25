@@ -37,8 +37,9 @@ export async function delAns(id, ansId) {
   revalidateTag("ans");
 }
 export async function editAns(body, id, ansId) {
-  await fetch(`${url}/${id}?editA=${ansId}`, { method: "PATCH", body: JSON.stringify({ text: body }) });
+  await fetch(`${url}/${id}?editA=${ansId}`, {
+    method: "PATCH",
+    body: JSON.stringify({ text: body }),
+  });
   revalidateTag("ans");
-
-
 }
