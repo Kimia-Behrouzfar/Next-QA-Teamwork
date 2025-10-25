@@ -11,6 +11,7 @@ import {
     DialogActions,
     Typography,
 } from '@mui/material'
+import Link from 'next/link'
 
 export default function Form() {
     const [open, setOpen] = useState(false)
