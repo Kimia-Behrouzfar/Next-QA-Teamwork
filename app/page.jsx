@@ -1,8 +1,17 @@
-
 "use client";
 import Form from "@/components/Form";
-import { deleteAnswer, editAnswer, fetchAnswers, postAnswer } from "@/redux/reducers/answer.slicer";
-import { deleteQuestion, fetchQuestions, postQuestion } from "@/redux/reducers/question.slicer";
+import FAQSection from "@/components/FAQSection";
+import {
+  deleteAnswer,
+  editAnswer,
+  fetchAnswers,
+  postAnswer,
+} from "@/redux/reducers/answer.slicer";
+import {
+  deleteQuestion,
+  fetchQuestions,
+  postQuestion,
+} from "@/redux/reducers/question.slicer";
 import { useDispatch } from "react-redux";
 
 export default function Home() {
@@ -13,7 +22,6 @@ export default function Home() {
     // dispatch(postAnswer({ content: 'Answer', skill: 'Question' }));
     // dispatch(editAnswer({ id: '68f381f305f59fe031c2be9a', content: 'Answerrrrr', skill: 'React' }));
     // dispatch(deleteAnswer({ id: '68f385731e227ca56b08a0f3', skill: 'React' }));
-
     //! Question fetching destructuring
     // dispatch(fetchQuestions())
     // const question = {name: 'React', description: 'what is React?'}
@@ -24,6 +32,8 @@ export default function Home() {
 
   return (
     <>
+      <FAQSection />
+
       <Form />
     </>
   );

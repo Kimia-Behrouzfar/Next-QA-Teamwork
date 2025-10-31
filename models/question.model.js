@@ -16,6 +16,7 @@ const SkillsSchema = new mongoose.Schema({
   },
 });
 
-const Question = mongoose.models.Question || mongoose.model("Question", SkillsSchema);
+const Question =
+  mongoose.models.Question || mongoose.model("Question", SkillsSchema);
 
 export default Question;

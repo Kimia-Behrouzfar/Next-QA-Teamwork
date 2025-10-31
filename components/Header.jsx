@@ -53,18 +53,34 @@ function Header(props) {
     </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
       <AppBar component="nav" sx={{ py: 1, backgroundColor: "primary.main" }}>
         <Toolbar>
-          <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} sx={{ mr: 2, display: { sm: "none" } }}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: "none" } }}
+          >
             <MenuIcon />
           </IconButton>
-          <Box component="div" sx={{ mr: 2, display: { xs: "none", sm: "block" } }}>
+          <Box
+            component="div"
+            sx={{ mr: 2, display: { xs: "none", sm: "block" } }}
+          >
             <Link href={"/"}>
-              <Image src="/logo.png" width={50} height={50} alt="logo" priority />
+              <Image
+                src="/logo.png"
+                width={50}
+                height={50}
+                alt="logo"
+                priority
+              />
             </Link>
           </Box>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
@@ -76,7 +92,13 @@ function Header(props) {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: "1", textAlign: "right", display: { xs: "none", sm: "block" } }}>
+          <Box
+            sx={{
+              flexGrow: "1",
+              textAlign: "right",
+              display: { xs: "none", sm: "block" },
+            }}
+          >
             <DarkModeBtn />
           </Box>
         </Toolbar>
@@ -88,11 +110,14 @@ function Header(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}
@@ -101,7 +126,5 @@ function Header(props) {
     </Box>
   );
 }
-
-
 
 export default Header;

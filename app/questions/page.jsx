@@ -50,7 +50,17 @@ export default function QuestionsPage() {
   }
 
   return (
-    <Box sx={{ textAlign: "center", mt: 4, mb: 8, display: 'flex', flexDirection: 'column', alignItems: "center", maxWidth: '100%' }}>
+    <Box
+      sx={{
+        textAlign: "center",
+        mt: 4,
+        mb: 8,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        maxWidth: "100%",
+      }}
+    >
       <Typography variant="h4" gutterBottom>
         All Questions
       </Typography>
@@ -64,7 +74,7 @@ export default function QuestionsPage() {
           variant="outlined"
           size="small"
           sx={{
-            width: { xs: "90%", sm: 400 }, // responsive width
+            width: { xs: "90%", sm: 400 },
           }}
         />
       </Box>
@@ -75,7 +85,18 @@ export default function QuestionsPage() {
       </Box>
 
       {/* 🔹 Questions List */}
-      <Stack spacing={2} sx={{ width: "900px", padding: " 30px 50px", maxWidth: 900, backgroundColor: "blue", display: 'flex', justifyContent: "center", backgroundColor: "#7e7e7e59" }}>
+      <Stack
+        spacing={2}
+        sx={{
+          width: "900px",
+          padding: " 30px 50px",
+          maxWidth: 900,
+          backgroundColor: "blue",
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: "#7e7e7e59",
+        }}
+      >
         {filteredQuestions.map((q) => (
           <QuestionCard
             key={q._id ?? q.id}
