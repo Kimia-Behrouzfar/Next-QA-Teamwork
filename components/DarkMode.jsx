@@ -1,5 +1,6 @@
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+
 import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { IconButton, ListItem } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "@/redux/reducers/themeSlice";
