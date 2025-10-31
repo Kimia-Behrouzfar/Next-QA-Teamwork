@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-import Form from "./components/Form";
 
-export default function Home() {
-  return (
-    <>
-      <Form />
-    </>
-=======
 "use client";
+import Form from "@/components/Form";
 import { deleteAnswer, editAnswer, fetchAnswers, postAnswer } from "@/redux/reducers/answer.slicer";
 import { deleteQuestion, fetchQuestions, postQuestion } from "@/redux/reducers/question.slicer";
 import { useDispatch } from "react-redux";
@@ -28,11 +21,10 @@ export default function Home() {
     // dispatch(deleteQuestion({ id: '68f37d7605f59fe031c2bd07' }))
   }
   test();
-  
+
   return (
-    <div>
-        <h1>Home</h1>
-    </div>
->>>>>>> f8eefec24a00b39abe2ac03f7e7733a23167ca9a
+    <>
+      <Form />
+    </>
   );
 }

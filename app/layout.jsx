@@ -15,7 +15,9 @@ export default function RootLayout({ children }) {
       <body style={{ display: "flex", height: "100vh", flexDirection: "column", justifyContent: "space-between" }}>
         <ReduxProvider>
           <ThemeProvider>
-            <Header />
+            <div style={{ marginBottom: '70px' }}>
+              <Header />
+            </div>
             {children}
             <Footer />
           </ThemeProvider>
