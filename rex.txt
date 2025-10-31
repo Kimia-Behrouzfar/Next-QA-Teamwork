@@ -1,5 +1,0 @@
-### 🔍 Rezvan – Questions List and Filtering
-- Create the questions page/ showing all questions with asked time  
-- Implement live search functionality  
-- Build a filter bar to sort questions (new-to-old and old-to-new)  
-- Add a delete button for each question  

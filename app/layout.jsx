@@ -12,10 +12,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body style={{ display: "flex", height: "100vh", flexDirection: "column", justifyContent: "space-between" }}>
+      <body
+        style={{
+          display: "flex",
+          height: "100vh",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
         <ReduxProvider>
           <ThemeProvider>
-            <div style={{ marginBottom: '70px' }}>
+            <div style={{ marginBottom: "70px" }}>
               <Header />
             </div>
             {children}

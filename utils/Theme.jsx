@@ -1,5 +1,10 @@
 "use client";
-import { createTheme, CssBaseline, responsiveFontSizes, ThemeProvider as ThemeProviderMui } from "@mui/material";
+import {
+  createTheme,
+  CssBaseline,
+  responsiveFontSizes,
+  ThemeProvider as ThemeProviderMui,
+} from "@mui/material";
 import { Poppins } from "next/font/google";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
